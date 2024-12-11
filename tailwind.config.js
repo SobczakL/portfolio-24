@@ -17,7 +17,7 @@ export default {
             custom: ['mainFont', 'sans-serif']
         },
         fontSize: {
-            "header": "31px",
+            'header': '31px',
             "subheader-sm": "35px",
             "subheader-md": "40px",
             "subheader-lg": "45px",
