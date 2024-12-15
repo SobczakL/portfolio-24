@@ -14,28 +14,29 @@ export default function AboutContent() {
   })
 
   useEffect(() => {
-    const intervalIDs = [];
+    const intervalIDs = aboutContentText.map((text, index) => 
+      setInterval(() => {
+        setPlaceholderText(prevTexts => {
+          const newTexts = [...prevTexts]
 
-    aboutContentText.forEach((text) => {
-      const intervalID = setInterval(() => {
-        setPlaceholderText((prevState) => {
-          let newText = prevState.split("");
-          for(
-            let i = Math.floor(Math.random() * (prevState.length + 1));
-            i < prevState.length;
-            i++
-          ){
-            if(newText[i] !== text[i]){
-              newText[i] = text[i]
-              break;
-            }
+          const currentPlaceholder = newTexts[index]
+          const newPlaceholder = currentPlaceholder.split('')
+
+          const randomIndex = Math.floor(Math.random() * currentPlaceholder.length)
+
+          if(newPlaceholder[randomIndex] !== text[randomIndex]){
+            newPlaceholder[randomIndex] = text[randomIndex]
+            newTexts[index] = newPlaceholder.join('')
           }
-          return newText.join("")
+
+          return newTexts;
         })
       }, 100)
+    )
 
-      intervalIDs.push(intervalID)
-    })
+    return () => {
+      intervalIDs.forEach(clearInterval)
+    }
   }, [])
 
   return (
