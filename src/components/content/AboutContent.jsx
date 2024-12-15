@@ -1,51 +1,69 @@
-import { useEffect, useState } from "react"
+import { useEffect, useState } from "react";
 
 export default function AboutContent() {
+
+  //TODO: handle window screen size changes after render
   const aboutContentText = [
     "/ FULL STACK DEVELOPER",
     "/ TORONTO, CANADA",
-    "/ USE YOUR KEYBOARD TO NAVIGATE"
-  ]
+    `${window.innerWidth < 1200 ? 
+      "/ SCROLL FOR PROJECTS" :
+      "/ USE YOUR KEYBOARD TO NAVIGATE"
+    }`
+  ];
 
+  //Replace each content character with '-' at render
   const [placeholderText, setPlaceholderText] = useState(() => {
     let initState = [];
-    aboutContentText.map(text => initState.push("-".repeat(text.length)))
-    return initState
-  })
+    aboutContentText.map((text) => initState.push("-".repeat(text.length)));
+    return initState;
+  });
 
+  //Post render, replace each '-' with aboutContentText chars at random
+  //Only triggers at inital page render
   useEffect(() => {
-    const intervalIDs = aboutContentText.map((text, index) => 
+    const intervalIDs = aboutContentText.map((text, index) =>
       setInterval(() => {
-        setPlaceholderText(prevTexts => {
-          const newTexts = [...prevTexts]
+        setPlaceholderText((prevTexts) => {
+          const newTexts = [...prevTexts];
 
-          const currentPlaceholder = newTexts[index]
-          const newPlaceholder = currentPlaceholder.split('')
+          const currentPlaceholder = newTexts[index];
+          const newPlaceholder = currentPlaceholder.split("");
 
-          const randomIndex = Math.floor(Math.random() * currentPlaceholder.length)
+          const randomIndex = Math.floor(
+            Math.random() * currentPlaceholder.length
+          );
 
-          if(newPlaceholder[randomIndex] !== text[randomIndex]){
-            newPlaceholder[randomIndex] = text[randomIndex]
-            newTexts[index] = newPlaceholder.join('')
+          if (newPlaceholder[randomIndex] !== text[randomIndex]) {
+            newPlaceholder[randomIndex] = text[randomIndex];
+            newTexts[index] = newPlaceholder.join("");
           }
 
           return newTexts;
-        })
+        });
       }, 100)
-    )
+    );
 
     return () => {
-      intervalIDs.forEach(clearInterval)
-    }
-  }, [])
+      intervalIDs.forEach(clearInterval);
+    };
+  }, []);
 
   return (
-    <div className="h-[250px]">
+    <div className="h-[250px] flex flex-col justify-between">
       {placeholderText.map((text, index) => {
-        return(
-          <p key={index}>{text}</p>
-        )
+        return (
+          <p
+            key={index}
+            className="text-body-sm md:text-body-md lg:text-body-lg"
+            style={{
+              textAlign: index == 1 ? "center" : index == 2 ? "right" : ""
+            }}
+          >
+            {text}
+          </p>
+        );
       })}
     </div>
-  )
+  );
 }
