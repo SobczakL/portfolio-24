@@ -11,11 +11,11 @@ function App() {
     { title: "Contact", content: "content" },
   ];
 
-  const [activeElement, setActiveElement] = useState("");
+  const [activeElement, setActiveElement] = useState(0);
 
-  const handleClickedSection = (title) => {
-    setActiveElement(title);
-    console.log("section clicked")
+  const handleClickedSection = (ID) => {
+    setActiveElement(ID);
+    console.log("section clicked", ID)
   };
 
   return (
@@ -27,10 +27,10 @@ function App() {
             <SectionContainer
               key={id}
               ID={id}
-              isActive={activeElement === section.title}
+              isActive={activeElement === id}
               title={section.title}
               child={section.content}
-              onClick={() => handleClickedSection(section.title)}
+              onClick={() => handleClickedSection(id)}
             />
           );
         })}

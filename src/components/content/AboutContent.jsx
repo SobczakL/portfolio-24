@@ -9,7 +9,7 @@ export default function AboutContent() {
 
   const [placeholderText, setPlaceholderText] = useState(() => {
     let initState = [];
-    aboutContentText.forEach((text) => initState.push("-".repeat(text.length)))
+    aboutContentText.map(text => initState.push("-".repeat(text.length)))
     return initState
   })
 
