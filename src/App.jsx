@@ -3,6 +3,7 @@ import "./App.css";
 import AboutContent from "./components/content/AboutContent";
 import Header from "./components/header/Header";
 import SectionContainer from "./components/sectionContainer/SectionContainer";
+import Hero from "./components/hero/Hero";
 
 function App() {
   const sections = [
@@ -11,10 +12,10 @@ function App() {
     { title: "Contact", content: "content" },
   ];
 
-  const [activeElement, setActiveElement] = useState(0);
+  const [activeElement, setActiveElement] = useState("");
 
-  const handleClickedSection = (ID) => {
-    setActiveElement(ID);
+  const handleClickedSection = (title) => {
+    setActiveElement(title);
     console.log("section clicked", ID)
   };
 
@@ -22,15 +23,16 @@ function App() {
     <div className="bg-main-bg h-dvh text-white flex flex-col">
       <Header />
       <div className="grow flex flex-col">
+        <Hero />
         {sections.map((section, id) => {
           return (
             <SectionContainer
               key={id}
               ID={id}
-              isActive={activeElement === id}
+              isActive={activeElement === section.title}
               title={section.title}
               child={section.content}
-              onClick={() => handleClickedSection(id)}
+              onClick={() => handleClickedSection(section.title)}
             />
           );
         })}
