@@ -1,9 +1,17 @@
-export default function SectionContainer({ ID, title, child, isActive, onClick }) {
-  console.log(isActive)
+import React from "react";
+
+export default React.forwardRef(function SectionContainer({ 
+  ID, 
+  title, 
+  content, 
+  isActive,
+  id,
+  }, ref) {
   return (
     <div 
-    onClick={onClick}
-    className="grow p-[12px] md:p-[16px] lg:p-[20px] flex flex-col justify-between border-white border">
+    ref={ref}
+    id={id}
+    className="h-60 p-[12px] md:p-[16px] lg:p-[20px] flex flex-col justify-between border-white border">
       <p className="text-subheader-sm md:text-subheader-md lg:text-subheader-lg">
         {title}
       </p>
@@ -12,10 +20,10 @@ export default function SectionContainer({ ID, title, child, isActive, onClick }
         style={{
           display: isActive ? "block" : "none"
         }}
-      >{child}</div>
+      >{content}</div>
       <span className="text-subheader-sm md:text-subheader-md lg:text-subheader-lg self-end">
         0{ID + 1}
       </span>
     </div>
   );
-}
+})
