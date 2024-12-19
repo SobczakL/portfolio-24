@@ -58,6 +58,7 @@ export default function Hero() {
   }, []);
 
   // Determine text alignment
+//TODO: fix logic here - its buggy when expand and make smaller screen
   const getTextAlignment = (index) => {
     if(windowWidth < 768){
       if(index === 1) return "text-center"
@@ -72,10 +73,10 @@ export default function Hero() {
   }
 
   return (
-    <div className="h-[600px] flex flex-col md:flex-row gap-4 md:gap-8 p-[12px] md:p-[16px] lg:p-[20px] border-white border">
+    <div className="h-[600px] flex flex-col justify-center md:flex-row p-[12px] md:px-[16px] md:py-16 lg:py-[20px] lg:px-auto border-white border">
       {/* main image placeholder */}
-      <div className="h-2/4 w-full md:w-2/4 bg-white"></div>
-      <div className="h-2/4 w-full md:w-2/4 flex flex-col justify-between">
+      <div className="h-2/4 md:h-3/4 w-full md:w-2/4 lg:max-w-[600px] bg-white"></div>
+      <div className="h-2/4 md:h-3/4 w-full md:w-2/4 grid grid-rows-3 items-center md:px-8 lg:max-w-[600px]">
         {placeholderText.map((text, index) => {
           return (
             <p
