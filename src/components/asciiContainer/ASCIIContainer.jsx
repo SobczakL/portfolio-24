@@ -12,12 +12,12 @@ export default function ASCIIContainer() {
 
     return (
         <div
-            className="relative h-2/4 md:h-3/4 w-full md:w-2/4 lg:max-w-[600px] border "
+            className="relative h-2/4 md:h-3/4 w-full md:w-2/4 lg:max-w-[600px] border overflow-clip"
             ref={parentRef}
         >
             <canvas
                 ref={canvasRef}
-                className="hidden"
+                className=""
             ></canvas>
             <pre
                 ref={outputRef}

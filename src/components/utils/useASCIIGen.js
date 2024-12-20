@@ -11,22 +11,35 @@ export function useASCIIGen(imageURL, parentRef, canvasRef, outputRef) {
         const lines = [];
         let ascii = "";
 
-        for (let y = 0; y < height; y += 2) {
+        // for (let y = 0; y < height; y += 2) {
+        //     let line = "";
+        //     for (let x = 0; x < width; x += 2) {
+        //
+        //         let totalBrightness = 0;
+        //
+        //         for (let gY = 0; gY < 2; gY++) {
+        //             for (let gX = 0; gX < 2; gX++) {
+        //                 const offset = ((y + gY) * width + (x + gX)) * 4;
+        //                 const r = imagedata.data[offset];
+        //                 const g = imagedata.data[offset + 1];
+        //                 const b = imagedata.data[offset + 2];
+        //                 totalBrightness += (r + g + b) / 3;
+        //             }
+        //         }
+        //         const charindex = Math.floor(((totalBrightness / 4) / 255) * (density.length - 1));
+        //         line += density[charindex];
+        //     }
+        //     lines.push(line);
+        // }
+        for (let y = 0; y < height; y++) {
             let line = "";
-            for (let x = 0; x < width; x += 2) {
-
-                let totalBrightness = 0;
-
-                for (let gY = 0; gY < 2; gY++) {
-                    for (let gX = 0; gX < 2; gX++) {
-                        const offset = ((y + gY) * width + (x + gX)) * 4;
-                        const r = imagedata.data[offset];
-                        const g = imagedata.data[offset + 1];
-                        const b = imagedata.data[offset + 2];
-                        totalBrightness += (r + g + b) / 3;
-                    }
-                }
-                const charindex = Math.floor(((totalBrightness / 4) / 255) * (density.length - 1));
+            for (let x = 0; x < width; x++) {
+                const offset = (y * width + x) * 4;
+                const r = imagedata.data[offset];
+                const g = imagedata.data[offset + 1];
+                const b = imagedata.data[offset + 2];
+                const avg = (r + g + b) / 3;
+                const charindex = Math.floor((avg / 255) * (density.length - 1));
                 line += density[charindex];
             }
             lines.push(line);
@@ -51,15 +64,38 @@ export function useASCIIGen(imageURL, parentRef, canvasRef, outputRef) {
         image.crossOrigin = "anonymous";
         image.src = url;
         image.onload = () => {
-            const aspectRatio = image.width / image.height;
 
-            let maxwidth = Math.floor(parent.offsetWidth / 1.2)
-            let maxheight = Math.floor((maxwidth / aspectRatio) / 2);
+            const containerWidth = parent.offsetWidth
+            const containerHeight = parent.offsetHeight
 
-            canvas.width = maxwidth;
-            canvas.height = maxheight;
+            const charWidth = 8;
+            const charHeight = 9.6;
 
-            ctx.drawImage(image, 0, 0, maxwidth, maxheight);
+            const maxCharsWidth = Math.floor(containerWidth / charWidth)
+            const maxCharsHeight = Math.floor(containerHeight / charHeight)
+
+
+            const imageAspectRatio = image.width / image.height;
+            console.log(imageAspectRatio)
+            const containerAspectRatio = maxCharsWidth / maxCharsHeight;
+            console.log(containerAspectRatio)
+
+            let finalWidth, finalHeight;
+
+            if (imageAspectRatio > containerAspectRatio) {
+                finalWidth = maxCharsWidth * 2;
+                finalHeight = Math.floor((maxCharsHeight / imageAspectRatio) * 2);
+            }
+            else {
+                finalHeight = maxCharsHeight * 2;
+                finalWidth = Math.floor((maxCharsWidth / imageAspectRatio) * 2);
+
+            }
+
+            canvas.width = finalWidth;
+            canvas.height = finalHeight;
+
+            ctx.drawImage(image, 0, 0, finalWidth, finalHeight);
             generateASCII(canvas, ctx, output);
         };
 
