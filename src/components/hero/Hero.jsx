@@ -74,20 +74,23 @@ export default function Hero() {
     }
 
     return (
-        <div className="h-[600px] flex flex-col justify-center md:flex-row p-[12px] md:px-[16px] md:py-16 lg:py-[20px] lg:px-auto border-white border">
-            {/* main image placeholder */}
-            <ASCIIContainer />
-            <div className="h-2/4 md:h-3/4 lg:h-full w-full md:w-2/4 grid grid-rows-3 items-center md:px-8 lg:max-w-[600px]">
-                {placeholderText.map((text, index) => {
-                    return (
-                        <p
-                            key={index}
-                            className={`text-hero-sm md:text-hero-md lg:text-hero-lg ${getTextAlignment(index)}`}
-                        >
-                            {text}
-                        </p>
-                    );
-                })}
+        <div className="h-[600px] border-white border">
+            <div className="h-full flex flex-col place-items-center md:flex-row p-3 md:px-4 md:py-16 lg:py-5 lg:max-w-[1200px] lg:mx-auto">
+                <div className="md:place-items-center md:w-2/4">
+                    <ASCIIContainer />
+                </div>
+                <div className="h-2/4 md:h-3/4 lg:h-full w-full md:w-2/4 grid grid-rows-3 items-center md:px-8 lg:px-0 lg:max-w-[600px]">
+                    {placeholderText.map((text, index) => {
+                        return (
+                            <p
+                                key={index}
+                                className={`text-hero-sm md:text-hero-md lg:text-hero-lg ${getTextAlignment(index)}`}
+                            >
+                                {text}
+                            </p>
+                        );
+                    })}
+                </div>
             </div>
         </div>
     );

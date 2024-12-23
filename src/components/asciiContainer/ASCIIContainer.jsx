@@ -13,7 +13,7 @@ export default function ASCIIContainer() {
 
     return (
         <div
-            className="relative h-[316px] md:h-[360px] lg:h-[400px] w-[316px] md:w-[360px] lg:w-[400px] overflow-hidden"
+            className="relative h-[316px] md:h-[380px] lg:h-[420px] w-[316px] md:w-[380px] lg:w-[420px] mx-auto md:mx-0 overflow-hidden"
             ref={parentRef}
         >
             <canvas
