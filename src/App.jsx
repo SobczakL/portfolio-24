@@ -15,8 +15,8 @@ function App() {
 
     const observerOptions = {
       root: null,
-      rootMargin: "0px",
-      threshold: [0, 0.3, 0.6, 0.9, 1.0],
+      rootMargin: "-100px",
+      threshold: [0.2, 0.6, 0.9, 1.0],
     };
 
     const observerCallback = (entries) => {
@@ -29,7 +29,7 @@ function App() {
 
     const observer = new IntersectionObserver(
       observerCallback,
-      observerOptions
+      observerOptions,
     );
 
     currentRefs.forEach((ref) => {
@@ -43,8 +43,7 @@ function App() {
   }, []);
 
   const sections = [
-    // { title: "About", content: <AboutContent /> },
-    { title: "About", content: "content" },
+    { title: "About", content: <AboutContent /> },
     { title: "Projects", content: "content" },
     { title: "Contact", content: "content" },
   ];
