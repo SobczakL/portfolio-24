@@ -8,31 +8,9 @@ export function useASCIIGen(imageURL, parentRef, canvasRef, outputRef) {
         const width = canvas.width;
         const height = canvas.height;
         const imagedata = ctx.getImageData(0, 0, width, height);
-        const lines = [];
         let ascii = "";
 
-        // for (let y = 0; y < height; y += 2) {
-        //     let line = "";
-        //     for (let x = 0; x < width; x += 2) {
-        //
-        //         let totalBrightness = 0;
-        //
-        //         for (let gY = 0; gY < 2; gY++) {
-        //             for (let gX = 0; gX < 2; gX++) {
-        //                 const offset = ((y + gY) * width + (x + gX)) * 4;
-        //                 const r = imagedata.data[offset];
-        //                 const g = imagedata.data[offset + 1];
-        //                 const b = imagedata.data[offset + 2];
-        //                 totalBrightness += (r + g + b) / 3;
-        //             }
-        //         }
-        //         const charindex = Math.floor(((totalBrightness / 4) / 255) * (density.length - 1));
-        //         line += density[charindex];
-        //     }
-        //     lines.push(line);
-        // }
         for (let y = 0; y < height; y++) {
-            let line = "";
             for (let x = 0; x < width; x++) {
                 const offset = (y * width + x) * 4;
                 const r = imagedata.data[offset];
@@ -40,22 +18,11 @@ export function useASCIIGen(imageURL, parentRef, canvasRef, outputRef) {
                 const b = imagedata.data[offset + 2];
                 const avg = (r + g + b) / 3;
                 const charindex = Math.floor((avg / 255) * (density.length - 1));
-                line += density[charindex];
+                ascii += density[charindex];
             }
-            lines.push(line);
+            ascii += "\n";
         }
-
-        let currentLine = 0;
-        function printLine() {
-            if (currentLine < lines.length) {
-                ascii += lines[currentLine] + "\n";
-                asciiOutput.textContent = ascii;
-                currentLine++;
-                setTimeout(printLine, 80);
-            }
-        }
-
-        printLine();
+        asciiOutput.textContent = ascii;
     }
 
     const handleimage = (url, parent, canvas, output) => {
@@ -68,34 +35,16 @@ export function useASCIIGen(imageURL, parentRef, canvasRef, outputRef) {
             const containerWidth = parent.offsetWidth
             const containerHeight = parent.offsetHeight
 
-            const charWidth = 8;
+            const charWidth = 5.5;
             const charHeight = 9.6;
 
             const maxCharsWidth = Math.floor(containerWidth / charWidth)
             const maxCharsHeight = Math.floor(containerHeight / charHeight)
 
+            canvas.width = Math.floor(maxCharsWidth * 2);
+            canvas.height = maxCharsHeight * 2;
 
-            const imageAspectRatio = image.width / image.height;
-            console.log(imageAspectRatio)
-            const containerAspectRatio = maxCharsWidth / maxCharsHeight;
-            console.log(containerAspectRatio)
-
-            let finalWidth, finalHeight;
-
-            if (imageAspectRatio > containerAspectRatio) {
-                finalWidth = maxCharsWidth * 2;
-                finalHeight = Math.floor((maxCharsHeight / imageAspectRatio) * 2);
-            }
-            else {
-                finalHeight = maxCharsHeight * 2;
-                finalWidth = Math.floor((maxCharsWidth / imageAspectRatio) * 2);
-
-            }
-
-            canvas.width = finalWidth;
-            canvas.height = finalHeight;
-
-            ctx.drawImage(image, 0, 0, finalWidth, finalHeight);
+            ctx.drawImage(image, 0, 0, (Math.floor(maxCharsWidth * 2)), (maxCharsHeight * 2));
             generateASCII(canvas, ctx, output);
         };
 

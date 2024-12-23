@@ -77,7 +77,7 @@ export default function Hero() {
         <div className="h-[600px] flex flex-col justify-center md:flex-row p-[12px] md:px-[16px] md:py-16 lg:py-[20px] lg:px-auto border-white border">
             {/* main image placeholder */}
             <ASCIIContainer />
-            <div className="h-2/4 md:h-3/4 w-full md:w-2/4 grid grid-rows-3 items-center md:px-8 lg:max-w-[600px]">
+            <div className="h-2/4 md:h-3/4 lg:h-full w-full md:w-2/4 grid grid-rows-3 items-center md:px-8 lg:max-w-[600px]">
                 {placeholderText.map((text, index) => {
                     return (
                         <p
