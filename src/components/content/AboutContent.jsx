@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useIntersectionObserver } from "../utils/useIntersectionObserver";
 
 export default function AboutContent() {
     const content = [
@@ -11,55 +11,27 @@ export default function AboutContent() {
         { id: "content-6", text: "Entrepreneurial spirit" },
     ];
 
-    const contentRefs = useRef([]);
-    const [activeContent, setActiveContent] = useState(null);
+    const {activeSection, setRef} = useIntersectionObserver({
+        threshold: [0.2, 0.6, 0.9, 1.0],
+        rootMargin: "-100px",
 
-    useEffect(() => {
-        const observers = [];
-        const currentRefs = contentRefs.current;
+    })
 
-        const observerOptions = {
-            root: null,
-            rootMargin: "-100px",
-            threshold: [0.2, 1.0],
-        };
-
-        const observerCallback = (entries) => {
-            entries.forEach((entry) => {
-                if (entry.isIntersecting) {
-                    const index = currentRefs.indexOf(entry.target);
-                    setActiveContent(index);
-                }
-            });
-        };
-
-        const observer = new IntersectionObserver(observerCallback, observerOptions);
-
-        currentRefs.forEach((ref) => {
-            if (ref) observer.observe(ref);
-        });
-
-        return () => {
-            currentRefs.forEach((ref) => {
-                if (ref) observer.unobserve(ref);
-            });
-        };
-    }, []);
 
     return (
-        <div className="">
+        <div className="space-y-10">
                 {content.map((item, index) => (
                     <div
                         key={item.id}
                         id={item.id}
-                        ref={(el) => (contentRefs.current[index] = el)}
+                        ref={setRef(index)}
                         className={`text-body-sm md:text-body-md lg:text-body-lg w-full text-center
               transform transition-all duration-300 ease-in-out
-              ${activeContent === index ? "scale-105 opacity-100" : "scale-95 opacity-50"}
+              ${activeSection === index ? "scale-105 opacity-100" : "scale-95 opacity-50"}
             `}
                     >
                         <span
-                            className={`${activeContent === index
+                            className={`${activeSection === index
                                     ? "inline text-accent-green px-1"
                                     : "hidden"
                                 }`}
@@ -68,7 +40,7 @@ export default function AboutContent() {
                         </span>
                         {item.text}
                         <span
-                            className={`${activeContent === index
+                            className={`${activeSection === index
                                     ? "inline text-accent-green px-1"
                                     : "hidden"
                                 }`}

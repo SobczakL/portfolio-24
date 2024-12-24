@@ -18,9 +18,6 @@ export default React.forwardRef(function SectionContainer({
                 </p>
                 <div
                     className="content-center"
-                    style={{
-                        display: isActive ? "block" : "none"
-                    }}
                 >{content}</div>
                 <span className="text-subheader-sm md:text-subheader-md lg:text-subheader-lg self-end">
                     0{ID + 1}
