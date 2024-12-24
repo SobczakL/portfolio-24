@@ -16,7 +16,7 @@ function App() {
     const observerOptions = {
       root: null,
       rootMargin: "-100px",
-      threshold: [0.2, 0.6, 0.9, 1.0],
+      threshold: [0.3, 0.6, 0.9, 1.0],
     };
 
     const observerCallback = (entries) => {

@@ -1,7 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 
 export default function AboutContent() {
-
     const content = [
         { id: "content-0", text: "Self-taught Frontend Developer" },
         { id: "content-1", text: "E-commerce background with a user-first mindset" },
@@ -9,11 +8,11 @@ export default function AboutContent() {
         { id: "content-3", text: "Analytical creative problem-solver" },
         { id: "content-4", text: "Tutor and mentor to aspiring developers" },
         { id: "content-5", text: "Solution driven" },
-        { id: "content-6", text: "Entreprenurial spirit" }
-    ]
+        { id: "content-6", text: "Entrepreneurial spirit" },
+    ];
 
-    const contentRefs = useRef([])
-    const [activeContent, setActiveContent] = useState(null)
+    const contentRefs = useRef([]);
+    const [activeContent, setActiveContent] = useState(null);
 
     useEffect(() => {
         const observers = [];
@@ -22,26 +21,24 @@ export default function AboutContent() {
         const observerOptions = {
             root: null,
             rootMargin: "-100px",
-            threshold: [0.2],
+            threshold: [0.2, 1.0],
         };
 
         const observerCallback = (entries) => {
             entries.forEach((entry) => {
                 if (entry.isIntersecting) {
-                    const index = currentRefs.indexOf(entry.target)
+                    const index = currentRefs.indexOf(entry.target);
                     setActiveContent(index);
                 }
             });
         };
 
-        const observer = new IntersectionObserver(
-            observerCallback,
-            observerOptions
-        );
+        const observer = new IntersectionObserver(observerCallback, observerOptions);
 
         currentRefs.forEach((ref) => {
             if (ref) observer.observe(ref);
         });
+
         return () => {
             currentRefs.forEach((ref) => {
                 if (ref) observer.unobserve(ref);
@@ -50,30 +47,36 @@ export default function AboutContent() {
     }, []);
 
     return (
-        <div className="space-y-10 px-8">
-            {content.map((item, index) => {
-                return (
-                    <p
+        <div className="">
+                {content.map((item, index) => (
+                    <div
                         key={item.id}
                         id={item.id}
                         ref={(el) => (contentRefs.current[index] = el)}
-                        className={
-                            `text-body-sm md:text-body-md lg:text-body-lg
-w-full
-                            text-center transform transition-all duration-100 ease-in-out
-                            ${activeContent === index ?
-                                "scale-105 opacity-100 text-accent-green border border-accent-green"
-                                :
-                                "scale-95 opacity-90"
-                            }`
-                        }
+                        className={`text-body-sm md:text-body-md lg:text-body-lg w-full text-center
+              transform transition-all duration-300 ease-in-out
+              ${activeContent === index ? "scale-105 opacity-100" : "scale-95 opacity-50"}
+            `}
                     >
+                        <span
+                            className={`${activeContent === index
+                                    ? "inline text-accent-green px-1"
+                                    : "hidden"
+                                }`}
+                        >
+                            {"{"}
+                        </span>
                         {item.text}
-                    </p>
-                )
-            })}
-
-
+                        <span
+                            className={`${activeContent === index
+                                    ? "inline text-accent-green px-1"
+                                    : "hidden"
+                                }`}
+                        >
+                            {"}"}
+                        </span>
+                    </div>
+                ))}
         </div>
     );
 }
