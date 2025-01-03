@@ -8,7 +8,7 @@ function App() {
     return (
         <div className="bg-main-bg text-white">
             <Header />
-            <div className="h-screen overflow-y-scroll overflow-x-hidden snap-y snap-mandatory">
+            <div className="h-screen overflow-x-hidden snap-y snap-mandatory">
                 <Hero />
                 <SectionList />
             </div>
