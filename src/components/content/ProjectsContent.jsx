@@ -8,6 +8,7 @@ export default function ProjectsSection() {
         threshold: 0.8,
         rootMargin: "-50px",
     })
+
     return (
         <div className="flex flex-col gap-6 md:gap-8 lg:gap-10">
             {data.map((project, index) => {
