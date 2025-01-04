@@ -18,7 +18,7 @@ export default function SectionList() {
     })
 
     return (
-        <div className="flex flex-col">
+        <div className="flex flex-col bg-inherit">
             {sections.map((section, index) => {
                 return (
                     <SectionContainer
@@ -26,9 +26,9 @@ export default function SectionList() {
                         ID={index}
                         ref={setRef(index)}
                         isActive={activeSection === section.title}
+                        id={section.title}
                         title={section.title}
                         content={section.content}
-                        id={section.title}
                     />
                 );
             })}
