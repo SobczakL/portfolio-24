@@ -10,7 +10,7 @@ export default function ProjectsSection() {
     })
 
     return (
-        <div className="flex flex-col snap-mandatory snap-y overflow-y-auto gap-8 md:gap-8 lg:gap-10">
+        <div className="flex flex-col gap-8 md:gap-8 lg:gap-10">
             {data.map((project, index) => {
                 return (
                     <ProjectContainer
