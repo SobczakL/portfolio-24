@@ -71,12 +71,12 @@ export default function Hero() {
     }
 
     return (
-        <div className="h-4/6 border-white border">
-            <div className="h-full flex gap-8 md:gap-0  flex-col place-items-center justify-between md:flex-row px-3 md:px-4 py-8 md:py-16 lg:py-5 lg:max-w-[1200px] lg:mx-auto">
-                <div className="md:place-content-center md:place-items-center h-full md:w-2/4">
+        <div className="font-pixel h-fit md:h-3/6 w-full px-3 md:px-4 py-4 md:py-16 lg:py-5 md:max-w-full lg:max-w-[1200px] lg:mx-auto">
+            <div className="h-full flex flex-col place-items-center justify-start md:flex-row gap-8 md:gap-0 lg:gap-16">
+                <div className="place-content-center place-items-center w-full md:w-3/6 h-auto aspect-[4/3]">
                     <ASCIIContainer />
                 </div>
-                <div className="h-2/4 md:h-full lg:h-full w-full md:w-2/4 grid grid-rows-3 items-center md:px-8 lg:px-0 lg:max-w-[600px]">
+                <div className="size-full gap-20 md:w-3/6 flex flex-col md:px-8 lg:px-0 lg:max-w-[600px]">
                     {placeholderText.map((text, index) => {
                         return (
                             <p

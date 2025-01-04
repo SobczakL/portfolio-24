@@ -18,7 +18,7 @@ export default function SectionList() {
     })
 
     return (
-        <div className="flex flex-col bg-inherit">
+        <div className="flex flex-col bg-inherit lg:max-w-[1200px] lg:mx-auto">
             {sections.map((section, index) => {
                 return (
                     <SectionContainer
