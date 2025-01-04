@@ -6,11 +6,11 @@ export default function ProjectsSection() {
 
     const {activeSection, setRef} = useIntersectionObserver({
         threshold: 0.8,
-        rootMargin: "-50px",
+        rootMargin: "-55px",
     })
 
     return (
-        <div className="flex flex-col gap-6 md:gap-8 lg:gap-10">
+        <div className="flex flex-col snap-mandatory snap-y overflow-y-auto gap-8 md:gap-8 lg:gap-10">
             {data.map((project, index) => {
                 return (
                     <ProjectContainer
