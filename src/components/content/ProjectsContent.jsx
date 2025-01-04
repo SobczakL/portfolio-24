@@ -5,11 +5,11 @@ import { useIntersectionObserver } from "../utils/useIntersectionObserver";
 export default function ProjectsSection() {
 
     const {activeSection, setRef} = useIntersectionObserver({
-        threshold: 1,
-        rootMargin: "0px",
+        threshold: 0.8,
+        rootMargin: "-50px",
     })
     return (
-        <div>
+        <div className="flex flex-col gap-6 md:gap-8 lg:gap-10">
             {data.map((project, index) => {
                 return (
                     <ProjectContainer
