@@ -6,10 +6,9 @@ export default function ASCIIContainer() {
     const parentRef = useRef()
     const canvasRef = useRef()
     const outputRef = useRef()
-    // const imageURL = "./images/gigachad.jpeg"
-    const imageURL = "./images/emoji.jpg"
+    const videoURL = "./images/life-video.mp4"
 
-    useASCIIGen(imageURL, parentRef, canvasRef, outputRef)
+    useASCIIGen(videoURL, "video", parentRef, canvasRef, outputRef)
 
     return (
         <div

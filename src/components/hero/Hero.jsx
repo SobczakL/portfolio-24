@@ -16,9 +16,7 @@ export default function Hero() {
     const aboutContentText = [
         "/ FULL STACK DEVELOPER",
         "/ TORONTO, CANADA",
-        windowWidth < 1200
-            ? "/ SCROLL FOR PROJECTS"
-            : "/ USE YOUR KEYBOARD TO NAVIGATE",
+        "/ SCROLL FOR PROJECTS"
     ];
 
     //Replace each content character with '-' at render
@@ -59,7 +57,6 @@ export default function Hero() {
     }, []);
 
     // Determine text alignment
-    //TODO: fix logic here - its buggy when expand and make smaller screen
     const getTextAlignment = (index) => {
         if (windowWidth < 768) {
             if (index === 1) return "text-center"
@@ -74,19 +71,19 @@ export default function Hero() {
     }
 
     return (
-        <div className="h-screen border-white border">
-            <div className="h-full flex flex-col place-items-center md:flex-row p-3 md:px-4 md:py-16 lg:py-5 lg:max-w-[1200px] lg:mx-auto">
-                <div className="md:place-items-center md:w-2/4">
+        <div className="h-4/6 border-white border">
+            <div className="h-full flex gap-8 md:gap-0  flex-col place-items-center justify-between md:flex-row px-3 md:px-4 py-8 md:py-16 lg:py-5 lg:max-w-[1200px] lg:mx-auto">
+                <div className="md:place-content-center md:place-items-center h-full md:w-2/4">
                     <ASCIIContainer />
                 </div>
-                <div className="h-2/4 md:h-3/4 lg:h-full w-full md:w-2/4 grid grid-rows-3 items-center md:px-8 lg:px-0 lg:max-w-[600px]">
+                <div className="h-2/4 md:h-full lg:h-full w-full md:w-2/4 grid grid-rows-3 items-center md:px-8 lg:px-0 lg:max-w-[600px]">
                     {placeholderText.map((text, index) => {
                         return (
                             <p
                                 key={index}
                                 className={`text-hero-sm md:text-hero-md lg:text-hero-lg ${getTextAlignment(index)}`}
                             >
-                                {text}
+                                {text}{index === 2 ? " ↓" : ""}
                             </p>
                         );
                     })}
