@@ -74,7 +74,7 @@ export default function Hero() {
     }
 
     return (
-        <div className="h-screen snap-start border-white border">
+        <div className="h-screen border-white border">
             <div className="h-full flex flex-col place-items-center md:flex-row p-3 md:px-4 md:py-16 lg:py-5 lg:max-w-[1200px] lg:mx-auto">
                 <div className="md:place-items-center md:w-2/4">
                     <ASCIIContainer />

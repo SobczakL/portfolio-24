@@ -1,13 +1,13 @@
-import { useState, useRef, useEffect } from "react";
 import SectionContainer from "../sectionContainer/SectionContainer";
 import AboutContent from "../content/AboutContent";
+import ProjectsContent from "../content/ProjectsContent";
 import { useIntersectionObserver } from "../utils/useIntersectionObserver";
 
 export default function SectionList() {
 
     const sections = [
         { title: "About", content: <AboutContent /> },
-        { title: "Projects", content: "content" },
+        { title: "Projects", content: <ProjectsContent /> },
         { title: "Contact", content: "content" },
     ];
 
@@ -18,7 +18,7 @@ export default function SectionList() {
     })
 
     return (
-        <div className="h-screen snap-start flex flex-col">
+        <div className="flex flex-col">
             {sections.map((section, index) => {
                 return (
                     <SectionContainer
