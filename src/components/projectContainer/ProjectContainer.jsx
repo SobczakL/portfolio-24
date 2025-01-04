@@ -29,7 +29,7 @@ export default React.forwardRef(function ProjectContainer({
                         </div>
                     </div>
                     <div
-                        className="flex flex-col gap-4 md:max-w-[75%]"
+                        className="flex flex-col justify-between gap-4 md:max-w-[75%]"
                     >
                         <p>{project.description}</p>
                         <p>TECH: {project.stack}</p>
