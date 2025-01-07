@@ -1,7 +1,8 @@
 import { useEffect } from "react";
 
 export function useASCIIGen(mediaURL, mediaType, parentRef, canvasRef, outputRef) {
-    const generateASCII = (canvas, ctx, asciiOutput) => {
+
+    const generateASCII = (canvas, ctx, output) => {
         // const density =
         //     "$@b%8&wm#*oakdpwmo0qlcjyxzvuxjft/|()1{}[]?-_+~<>i!;:,^`'. ";
         const density =
@@ -26,8 +27,9 @@ export function useASCIIGen(mediaURL, mediaType, parentRef, canvasRef, outputRef
             }
             ascii += "\n";
         }
-        asciiOutput.textContent = ascii;
+        output.textContent = ascii;
     };
+
 
     const handleImage = (url, parent, canvas, output) => {
         const ctx = canvas.getContext("2d");
@@ -35,18 +37,10 @@ export function useASCIIGen(mediaURL, mediaType, parentRef, canvasRef, outputRef
         image.crossOrigin = "anonymous";
         image.src = url;
         image.onload = () => {
-            const containerWidth = parent.offsetWidth;
-            const containerHeight = parent.offsetHeight;
-
-            const charWidth = 8;
-            const charHeight = 10;
-
-            const maxCharsWidth = Math.floor(containerWidth / charWidth);
-            const maxCharsHeight = Math.floor(containerHeight / charHeight);
-
-            canvas.width = Math.floor(maxCharsWidth * 2);
-            canvas.height = maxCharsHeight * 2;
-
+            const containerWidth = parent.offsetWidth
+            const containerHeight = parent.offsetHeight
+            canvas.width = Math.floor(containerWidth / 16)
+            canvas.height = Math.floor(containerHeight / 9.6)
             ctx.drawImage(image, 0, 0, canvas.width, canvas.height);
             generateASCII(canvas, ctx, output);
         };
