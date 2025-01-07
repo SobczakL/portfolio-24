@@ -18,7 +18,7 @@ export default function SectionList() {
     })
 
     return (
-        <div className="flex flex-col bg-inherit lg:max-w-[1200px] lg:mx-auto">
+        <div className="relative snap-start flex flex-col bg-inherit lg:max-w-[1200px] lg:mx-auto">
             {sections.map((section, index) => {
                 return (
                     <SectionContainer
@@ -29,7 +29,8 @@ export default function SectionList() {
                         id={section.title}
                         title={section.title}
                         content={section.content}
-                    />
+                    >
+                    </SectionContainer>
                 );
             })}
         </div>

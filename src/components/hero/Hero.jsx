@@ -48,7 +48,7 @@ export default function Hero() {
 
                     return newTexts;
                 });
-            }, 100)
+            }, 50)
         );
 
         return () => {
@@ -71,7 +71,7 @@ export default function Hero() {
     }
 
     return (
-        <div className="font-pixel h-fit md:h-3/6 w-full px-3 md:px-4 py-4 md:py-16 lg:py-5 md:max-w-full lg:max-w-[1200px] lg:mx-auto">
+        <div className="font-pixel self-center h-fit md:h-3/6 w-full px-3 md:px-4 py-4 md:py-16 lg:py-5 md:max-w-full lg:max-w-[1200px] lg:mx-auto">
             <div className="h-full flex flex-col place-items-center justify-start md:flex-row gap-8 md:gap-0 lg:gap-16">
                 <div className="place-content-center place-items-center w-full md:w-3/6 h-auto aspect-[4/3]">
                     <ASCIIContainer />

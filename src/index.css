@@ -6,10 +6,12 @@
     font-family: "pixel";
     src: url("../public/fonts/gohufont.ttf")
 }
+
 @font-face {
     font-family: "jetB";
     src: url("../public/fonts/JetBrainsMonoNL-Regular.ttf")
 }
+
 @font-face {
     font-family: "led";
     src: url("../public/fonts/led_counter-7.ttf")
@@ -18,4 +20,9 @@
 :root {
     font-size: 16px;
     scroll-behavior: smooth;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+::-webkit-scrollbar {
+    display: none;
 }

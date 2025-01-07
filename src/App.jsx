@@ -7,9 +7,13 @@ function App() {
 
     return (
         <div className="h-full scroll-smooth bg-main-bg text-white">
-            <Header />
-            <div className="h-full bg-main-bg ">
-                <Hero />
+            <div className="h-screen flex flex-col">
+                <Header />
+                <div className="flex-grow flex items-center justify-center">
+                    <Hero />
+                </div>
+            </div>
+            <div className="h-screen overflow-y-scroll scroll-snap-y bg-main-bg snap-mandatory">
                 <SectionList />
             </div>
         </div>

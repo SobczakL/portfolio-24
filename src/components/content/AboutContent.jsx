@@ -1,3 +1,4 @@
+import { useEffect, useState } from "react";
 import { useIntersectionObserver } from "../utils/useIntersectionObserver";
 
 export default function AboutContent() {
@@ -11,44 +12,21 @@ export default function AboutContent() {
         { id: "content-6", text: "Entrepreneurial spirit" },
     ];
 
-    const {activeSection, setRef} = useIntersectionObserver({
-        threshold: [0.2, 0.6, 0.9, 1.0],
-        rootMargin: "-100px",
-
-    })
-
-
     return (
-        <div className="space-y-10">
+        <div className="h-full"
+        >
+            <div className="space-y-10">
                 {content.map((item, index) => (
                     <div
                         key={item.id}
                         id={item.id}
-                        ref={setRef(index)}
-                        className={`text-body-sm md:text-body-md lg:text-body-lg w-full text-center
-              transform transition-all duration-300 ease-in-out
-              ${activeSection === index ? "scale-105 opacity-100" : "scale-95 opacity-50"}
-            `}
+                        className="text-body-sm md:text-body-md lg:text-body-lg w-full text-center"
                     >
-                        <span
-                            className={`${activeSection === index
-                                    ? "inline text-accent-green px-1"
-                                    : "hidden"
-                                }`}
-                        >
-                            {"{"}
-                        </span>
                         {item.text}
-                        <span
-                            className={`${activeSection === index
-                                    ? "inline text-accent-green px-1"
-                                    : "hidden"
-                                }`}
-                        >
-                            {"}"}
-                        </span>
                     </div>
                 ))}
+
+            </div>
         </div>
     );
 }
