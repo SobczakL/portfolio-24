@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 export default function AboutContent() {
     const content = [
@@ -11,23 +11,11 @@ export default function AboutContent() {
         "Entrepreneurial spirit"
     ];
 
-    const findLongestWordLength = (arr) => {
-        let maxChar = 0
-        arr.forEach((sentence) => {
-            const longestWordLength = sentence.split(" ").sort((prev, curr) => curr.length > - prev.length)[0].length
-
-            if (maxChar < longestWordLength) {
-                maxChar = longestWordLength
-            }
-        })
-        return maxChar;
-    }
-
     const createPlaceholderBinary = (arr) => {
         let maxChar = 0
         let binaryReplacement = []
         arr.forEach((sentence) => {
-            if (maxChar < sentence.length){
+            if (maxChar < sentence.length) {
                 maxChar = sentence.length
             }
         })
@@ -42,14 +30,55 @@ export default function AboutContent() {
         return binaryReplacement
     }
 
-    console.log(createPlaceholderBinary(content))
+    //Find at what random int can we start rendering content
+    //given the length of each placeholder line.
+
+    const findRandomIndex = (placeholder, word) => {
+        if (word.length > placeholder.length) {
+            return null
+        }
+
+        const maxStart = placeholder.length - word.length;
+
+        const randomIndex = Math.floor(Math.random() * (maxStart + 1))
+
+        return randomIndex
+    }
+
+
+
+
     const [placeholderText, setPlaceholderText] = useState(createPlaceholderBinary(content))
+    useEffect(() => {
+        content.map((sentence, index) => {
+            setPlaceholderText((prevTexts) => {
+                const newTexts = [...prevTexts]
+                const currentPlaceholder = newTexts[index];
+                const newPlaceholder = currentPlaceholder.split("");
+                const randomIndex = findRandomIndex(currentPlaceholder, newPlaceholder)
+                if (newPlaceholder[randomIndex] !== sentence[randomIndex]) {
+                    newPlaceholder[randomIndex] = sentence[randomIndex];
+                    newTexts[index] = newPlaceholder.join("");
+                }
+
+                return newTexts;
+
+
+            })
+
+        })
+
+    }, []);
+
+    console.log(placeholderText[0])
+    console.log(content[0].split(" ")[0])
+    console.log(findRandomIndex(placeholderText[0], content[0].split(" ")[0]))
 
     return (
         <div className="space-y-10 h-fit">
             {placeholderText.map((text, index) => (
                 <div
-                    key={text.id}
+                    key={index}
                     id={text.id}
                     className="text-body-sm md:text-body-md lg:text-body-lg w-full text-center"
                 >
