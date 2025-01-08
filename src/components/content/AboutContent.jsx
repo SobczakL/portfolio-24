@@ -11,48 +11,52 @@ export default function AboutContent() {
         "Entrepreneurial spirit"
     ];
 
-    const createPlaceholderBinary = (arr) => {
+    const findLongestWordLength = (arr) => {
         let maxChar = 0
         arr.forEach((sentence) => {
             const longestWordLength = sentence.split(" ").sort((prev, curr) => curr.length > - prev.length)[0].length
 
-            if(maxChar < longestWordLength){
+            if (maxChar < longestWordLength) {
                 maxChar = longestWordLength
             }
         })
-        let curLine = []
-        for (let i = 0; i < maxChar; i++) {
-            let randomIndex = Math.round(Math.random())
-            curLine.push(randomIndex.toString())
-        }
-        console.log(curLine.join(''))
-        return curLine.join('')
+        return maxChar;
     }
 
-console.log(createPlaceholderBinary(content))
-    const [placeholderText, setPlaceholderText] = useState(() => {
-        let initState = []
-        content.map((sentence) => {
-            initState.push(createPlaceholderBinary(sentence))
+    const createPlaceholderBinary = (arr) => {
+        let maxChar = 0
+        let binaryReplacement = []
+        arr.forEach((sentence) => {
+            if (maxChar < sentence.length){
+                maxChar = sentence.length
+            }
         })
-        return initState
-    })
+        for (let i = 0; i < arr.length; i++) {
+            let curLine = []
+            for (let j = 0; j <= maxChar; j++) {
+                let randomIndex = Math.round(Math.random())
+                curLine.push(randomIndex.toString())
+            }
+            binaryReplacement.push(curLine.join(''))
+        }
+        return binaryReplacement
+    }
+
+    console.log(createPlaceholderBinary(content))
+    const [placeholderText, setPlaceholderText] = useState(createPlaceholderBinary(content))
 
     return (
-        <div className="h-full"
-        >
-            <div className="space-y-10">
-                {content.map((item, index) => (
-                    <div
-                        key={item.id}
-                        id={item.id}
-                        className="text-body-sm md:text-body-md lg:text-body-lg w-full text-center"
-                    >
-                        {item.text}
-                    </div>
-                ))}
+        <div className="space-y-10 h-fit">
+            {placeholderText.map((text, index) => (
+                <div
+                    key={text.id}
+                    id={text.id}
+                    className="text-body-sm md:text-body-md lg:text-body-lg w-full text-center"
+                >
+                    {text}
+                </div>
+            ))}
 
-            </div>
         </div>
     );
 }

@@ -11,6 +11,7 @@ export default function SectionList() {
         { title: "Contact", content: "content" },
     ];
 
+    //TODO: do I need this? SectionContainer is rerendered each time...
     const {activeSection, setRef} = useIntersectionObserver({
         threshold: [0.3, 0.6, 0.9, 1.0],
         rootMargin: "-50px",
