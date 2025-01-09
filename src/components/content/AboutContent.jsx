@@ -33,46 +33,33 @@ export default function AboutContent() {
     //Find at what random int can we start rendering content
     //given the length of each placeholder line.
 
-    const findRandomIndex = (placeholder, word) => {
-        if (word.length > placeholder.length) {
-            return null
-        }
-
-        const maxStart = placeholder.length - word.length;
-
-        const randomIndex = Math.floor(Math.random() * (maxStart + 1))
-
-        return randomIndex
-    }
-
-
-
-
     const [placeholderText, setPlaceholderText] = useState(createPlaceholderBinary(content))
+
     useEffect(() => {
-        content.map((sentence, index) => {
-            setPlaceholderText((prevTexts) => {
-                const newTexts = [...prevTexts]
-                const currentPlaceholder = newTexts[index];
-                const newPlaceholder = currentPlaceholder.split("");
-                const randomIndex = findRandomIndex(currentPlaceholder, newPlaceholder)
-                if (newPlaceholder[randomIndex] !== sentence[randomIndex]) {
-                    newPlaceholder[randomIndex] = sentence[randomIndex];
-                    newTexts[index] = newPlaceholder.join("");
-                }
+        const intervalIDs = content.map((sentence, index) =>
+            setInterval(() => {
+                setPlaceholderText((prevTexts) => {
+                    const newTexts = [...prevTexts]
+                    const currentPlaceholder = newTexts[index];
+                    const newPlaceholder = currentPlaceholder.split("");
+                    const randomIndex = Math.floor(
+                        Math.random() * currentPlaceholder.length
+                    );
 
-                return newTexts;
+                    if (newPlaceholder[randomIndex] !== sentence[randomIndex]) {
+                        newPlaceholder[randomIndex] = sentence[randomIndex];
+                        newTexts[index] = newPlaceholder.join("");
+                    }
 
+                    return newTexts;
+                });
+            }, 30)
+        );
 
-            })
-
-        })
-
+        return () => {
+            intervalIDs.forEach(clearInterval);
+        };
     }, []);
-
-    console.log(placeholderText[0])
-    console.log(content[0].split(" ")[0])
-    console.log(findRandomIndex(placeholderText[0], content[0].split(" ")[0]))
 
     return (
         <div className="space-y-10 h-fit">
