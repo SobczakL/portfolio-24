@@ -2,6 +2,7 @@ import SectionContainer from "../sectionContainer/SectionContainer";
 import AboutContent from "../content/AboutContent";
 import ProjectsContent from "../content/ProjectsContent";
 import { useIntersectionObserver } from "../utils/useIntersectionObserver";
+import { createContext, useContext } from "react";
 
 export default function SectionList() {
 
@@ -10,6 +11,8 @@ export default function SectionList() {
         { title: "Projects", content: <ProjectsContent /> },
         { title: "Contact", content: "content" },
     ];
+
+    const Active = createContext('')
 
     //TODO: do I need this? SectionContainer is rerendered each time...
     const {activeSection, setRef} = useIntersectionObserver({
