@@ -28,7 +28,7 @@ export default {
                 "subheader-md": "40px",
                 "subheader-lg": "52px",
                 subheader: "20px",
-                "hero-sm": "16px",
+                "hero-sm": "18px",
                 "hero-md": "22px",
                 "hero-lg": "28px",
                 hero: "16px",

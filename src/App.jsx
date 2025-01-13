@@ -13,7 +13,7 @@ function App() {
                     <Hero />
                 </div>
             </div>
-            <div className="h-screen overflow-y-scroll scroll-snap-y bg-main-bg snap-mandatory">
+            <div className="h-screen bg-main-bg">
                 <SectionList />
             </div>
         </div>

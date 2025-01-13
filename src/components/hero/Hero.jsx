@@ -14,36 +14,38 @@ export default function Hero() {
     }, []);
 
     const aboutContentText = [
-        "/ FULL STACK DEVELOPER",
-        "/ TORONTO, CANADA",
-        "/ SCROLL FOR PROJECTS"
+        { id: 0, content: ["FULL", "STACK", "DEVELOPER"] },
+        { id: 1, content: ["TORONTO", "CANADA"] },
+        { id: 2, content: ["SCROLL", "FOR", "PROJECTS ↓"] },
     ];
 
     //Replace each content character with '-' at render
-    const [placeholderText, setPlaceholderText] = useState(() => {
-        let initState = [];
-        aboutContentText.map((text) => initState.push("-".repeat(text.length)));
-        return initState;
-    });
+    const [placeholderText, setPlaceholderText] = useState(() =>
+        aboutContentText.map(({ content }) =>
+            content.map(word => "-".repeat(word.length))
+        )
+    );
 
     //Post render, replace each '-' with aboutContentText chars at random
     //Only triggers at inital page render
     useEffect(() => {
-        const intervalIDs = aboutContentText.map((text, index) =>
+        const intervalIDs = aboutContentText.map(({ content }, lineIndex) =>
             setInterval(() => {
                 setPlaceholderText((prevTexts) => {
                     const newTexts = [...prevTexts];
+                    const currentLine = newTexts[lineIndex];
+                    const newLine = [...currentLine];
 
-                    const currentPlaceholder = newTexts[index];
-                    const newPlaceholder = currentPlaceholder.split("");
+                    // Replace a random dash in a random word
+                    const wordIndex = Math.floor(Math.random() * currentLine.length);
+                    const word = currentLine[wordIndex].split("");
+                    const targetWord = content[wordIndex];
 
-                    const randomIndex = Math.floor(
-                        Math.random() * currentPlaceholder.length
-                    );
-
-                    if (newPlaceholder[randomIndex] !== text[randomIndex]) {
-                        newPlaceholder[randomIndex] = text[randomIndex];
-                        newTexts[index] = newPlaceholder.join("");
+                    const charIndex = Math.floor(Math.random() * word.length);
+                    if (word[charIndex] === "-") {
+                        word[charIndex] = targetWord[charIndex];
+                        newLine[wordIndex] = word.join("");
+                        newTexts[lineIndex] = newLine;
                     }
 
                     return newTexts;
@@ -51,9 +53,7 @@ export default function Hero() {
             }, 50)
         );
 
-        return () => {
-            intervalIDs.forEach(clearInterval);
-        };
+        return () => intervalIDs.forEach(clearInterval);
     }, []);
 
     // Determine text alignment
@@ -72,21 +72,21 @@ export default function Hero() {
 
     return (
         <div className="font-pixel self-center h-fit md:h-3/6 w-full px-3 md:px-4 py-4 md:py-16 lg:py-5 md:max-w-full lg:max-w-[1200px] lg:mx-auto">
-            <div className="h-full flex flex-col place-items-center justify-start md:flex-row gap-8 md:gap-0 lg:gap-16">
+            <div className="h-full flex flex-col place-items-center justify-start md:flex-row gap-16 md:gap-0 lg:gap-16">
                 <div className="place-content-center place-items-center w-full md:w-3/6 h-auto aspect-[4/3]">
                     <ASCIIContainer />
                 </div>
                 <div className="size-full gap-20 md:w-3/6 flex flex-col md:px-8 lg:px-0 lg:max-w-[600px]">
-                    {placeholderText.map((text, index) => {
-                        return (
-                            <p
-                                key={index}
-                                className={`text-hero-sm md:text-hero-md lg:text-hero-lg ${getTextAlignment(index)}`}
-                            >
-                                {text}{index === 2 ? " ↓" : ""}
-                            </p>
-                        );
-                    })}
+                    {placeholderText.map((line, lineIndex) => (
+                        <div
+                            key={lineIndex}
+                            className={`flex justify-end text-hero-sm md:text-hero-md lg:text-hero-lg ${getTextAlignment(lineIndex)} flex gap-2`}
+                        >
+                            {line.map((word, wordIndex) => (
+                                <p key={wordIndex}>{word}</p>
+                            ))}
+                        </div>
+                    ))}
                 </div>
             </div>
         </div>
