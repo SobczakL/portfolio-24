@@ -12,7 +12,7 @@ export default function ASCIIContainer() {
 
     return (
         <div
-            className="relative size-full mx-auto md:mx-0 overflow-hidden"
+            className="relative size-full mx-auto md:mx-0 aspect-[4/3]"
             ref={parentRef}
         >
             <canvas

@@ -4,7 +4,8 @@ export default {
     theme: {
         extend: {
             screens: {
-                sm: "480px",
+                xs: "320px",
+                sm: "425px",
                 md: "768px",
                 lg: "1200px",
             },
@@ -20,7 +21,8 @@ export default {
                 led: ["led", "sans-serif"],
             },
             fontSize: {
-                "header-sm": "50px" ,
+                "header-xs": "40px",
+                "header-sm": "55px" ,
                 "header-md": "74px" ,
                 "header-lg": "88px",
                 header: "31px",
