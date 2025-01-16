@@ -1,16 +1,6 @@
 import { useState, useEffect } from "react";
 
 export default function HeroCopy({ scrollPos }) {
-    const [windowWidth, setWindowWidth] = useState(window.innerWidth);
-
-    useEffect(() => {
-        const handleResize = () => {
-            setWindowWidth(window.innerWidth);
-        };
-        window.addEventListener("resize", handleResize);
-
-        return () => window.removeEventListener("resize", handleResize);
-    }, []);
 
     const aboutContentText = [
         { id: 0, content: ["FULL", "STACK", "DEVELOPER"] },
@@ -54,26 +44,12 @@ export default function HeroCopy({ scrollPos }) {
         return () => intervalIDs.forEach(clearInterval);
     }, []);
 
-    // Determine text alignment
-    const getTextAlignment = (index) => {
-        if (windowWidth < 768) {
-            if (index === 1) return "text-center"
-            if (index === 2) return "text-right"
-            return "text-left"
-        }
-        if (windowWidth >= 768) {
-            if (index === 1) return "text-right"
-            if (index === 2) return "text-center"
-            return "left"
-        }
-    }
-
     return (
-        <div className="gap-20 md:w-3/6 flex flex-col md:px-8 lg:px-0 lg:max-w-[600px]">
+        <div className="gap-12 sm:gap-14 flex flex-col md:px-8 lg:px-0">
             {placeholderText.map((line, lineIndex) => (
                 <div
                     key={lineIndex}
-                    className={`flex justify-end text-hero-sm md:text-hero-md lg:text-hero-lg ${getTextAlignment(lineIndex)} flex gap-2`}
+                    className="flex justify-end text-hero-sm md:text-hero-md lg:text-hero-lg gap-2"
                     style={{
                         transform: `translate(${scrollPos * 1.4}px)`
                     }}
