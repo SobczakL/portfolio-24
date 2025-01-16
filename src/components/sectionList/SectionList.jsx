@@ -7,7 +7,7 @@ import { createContext } from "react";
 
 export const ActiveObserverContext = createContext(false)
 
-export default function SectionList() {
+export default function SectionList({scrollPos}) {
 
     // const [isObserverActive, setIsObserverActive]
 
@@ -26,21 +26,27 @@ export default function SectionList() {
     })
 
     return (
-            <div className="flex flex-col bg-inherit snap-y lg:max-w-[1200px] lg:mx-auto">
-                {sections.map((section, index) => {
-                    return (
-                        <SectionContainer
-                            key={index}
-                            ID={index}
-                            ref={setRef(index)}
-                            isActive={activeSection === section.title}
-                            id={section.title}
-                            title={section.title}
-                            content={section.content}
-                        >
-                        </SectionContainer>
-                    );
-                })}
-            </div>
+        <div
+            className="flex flex-col bg-inherit snap-y lg:max-w-[1200px] lg:mx-auto"
+            style={{
+                transform: `translateY(-${scrollPos * 0.9}px)`
+            }}
+
+        >
+            {sections.map((section, index) => {
+                return (
+                    <SectionContainer
+                        key={index}
+                        ID={index}
+                        ref={setRef(index)}
+                        isActive={activeSection === section.title}
+                        id={section.title}
+                        title={section.title}
+                        content={section.content}
+                    >
+                    </SectionContainer>
+                );
+            })}
+        </div>
     )
 }
