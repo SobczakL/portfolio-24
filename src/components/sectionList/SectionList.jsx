@@ -1,20 +1,15 @@
 import SectionContainer from "../sectionContainer/SectionContainer";
 import AboutContent from "../content/AboutContent";
 import ProjectsContent from "../content/ProjectsContent";
-import { useIntersectionObserver } from "../utils/useIntersectionObserver";
-import { createContext } from "react";
+import {useIntersectionObserver} from "../hooks/useIntersectionObserver"
 
-
-export const ActiveObserverContext = createContext(false)
-
-export default function SectionList({scrollPos}) {
+export default function SectionList() {
 
     // const [isObserverActive, setIsObserverActive]
 
     const sections = [
-        { title: "About", content: <AboutContent /> },
-        { title: "Projects", content: <ProjectsContent /> },
-        { title: "Contact", content: "content" },
+        { title: "Info", content: <AboutContent /> },
+        { title: "Work", content: <ProjectsContent /> },
     ];
 
 
@@ -27,11 +22,7 @@ export default function SectionList({scrollPos}) {
 
     return (
         <div
-            className="flex flex-col bg-inherit snap-y lg:max-w-[1200px] lg:mx-auto"
-            style={{
-                transform: `translateY(-${scrollPos * 0.9}px)`
-            }}
-
+            className="flex flex-col mb-12 md:mb-14 lg:mb-20"
         >
             {sections.map((section, index) => {
                 return (

@@ -1,5 +1,5 @@
 import { useRef } from "react"
-import { useASCIIGen } from "../utils/useASCIIGen"
+import { useASCIIGen } from "../hooks/useASCIIGen"
 
 export default function ASCIIContainer() {
 
