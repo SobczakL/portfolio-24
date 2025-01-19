@@ -6,11 +6,12 @@ export default {
             screens: {
                 sm: "425px",
                 md: "768px",
-                lg: "1200px",
+                lg: "1100px",
             },
             colors: {
                 "main-bg": "#2D2B2B",
                 "hover-bg": "#2D2B2B",
+                "subtext-bg": "#5D5B5B",
                 "accent-green": "#5FF6BF",
             },
             fontFamily: {

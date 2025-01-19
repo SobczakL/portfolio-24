@@ -5,8 +5,6 @@ import {useIntersectionObserver} from "../hooks/useIntersectionObserver"
 
 export default function SectionList() {
 
-    // const [isObserverActive, setIsObserverActive]
-
     const sections = [
         { title: "Info", content: <AboutContent /> },
         { title: "Work", content: <ProjectsContent /> },
@@ -22,7 +20,7 @@ export default function SectionList() {
 
     return (
         <div
-            className="flex flex-col mb-12 md:mb-14 lg:mb-20"
+            className="flex flex-col gap-6 md:gap-8 lg:w-3/6 lg:overflow-y-scroll lg:pt-[15%]"
         >
             {sections.map((section, index) => {
                 return (

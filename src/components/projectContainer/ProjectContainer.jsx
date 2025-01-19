@@ -10,7 +10,7 @@ export default React.forwardRef(function ProjectContainer({
         <div
             ref={ref}
             id={id}
-            className={`${isActive ? "opacity-100" : "opacity-70 scale-95"} relative flex gap-5 w-full py-5 md:py-6 lg:py-8 text-body-sm md:text-body-md lg:text-body-lg h-auto`}>
+            className={`${isActive ? "opacity-100" : "opacity-70 scale-95"} relative flex gap-5 w-full pb-5 md:pb-6 lg:pb-8 text-body-sm md:text-body-md lg:text-body-lg h-auto`}>
             {/* <p>[]&gt;</p> */}
             <div className="flex flex-col md:flex-row gap-5 w-full justify-between">
                 <div className="flex flex-col md:flex-row md:justify-between gap-4">

@@ -19,10 +19,12 @@ function App() {
 
 
     return (
-        <div className="h-fit relative bg-main-bg text-white font-pixel">
+        <div className="h-fit lg:h-screen bg-main-bg text-white font-pixel">
             <Header />
-            <div className="h-full bg-inherit flex flex-col px-3 md:px-4 md:pb-16 lg:pb-6 lg:px-8 max-w-lg md:max-w-3xl lg:max-w-5xl mx-auto">
-                <ASCIIContainer />
+            <div className="mx-auto h-full lg:h-[85%] bg-inherit flex flex-col justify-items-center lg:flex-row gap-6 px-4 md:px-6">
+                <div className="flex flex-col mx-auto w-full md:w-5/6 lg:w-3/6 justify-center">
+                    <ASCIIContainer />
+                </div>
                 <SectionList />
             </div>
             <Footer />

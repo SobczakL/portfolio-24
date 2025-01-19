@@ -1,37 +1,53 @@
-import { useState, useEffect, useContext } from "react";
+import { useState, useEffect } from "react";
 
 export default function AboutContent() {
-    const [active, setActive] = useState(0)
-    const content = [
-        "Self-taught Frontend Developer",
-        "E-commerce background with a user-first mindset",
-        "Impactful performance responsive design",
-        "Analytical creative problem-solver",
-        "Tutor and mentor to aspiring developers",
-        "Solution driven",
-        "Entrepreneurial spirit"
+    const aboutContentText = [
+        { id: 0, content: "Hi, my name is Lucas Sobczak" },
+        { id: 1, content: "I am a self-taught Full Stack Developer" },
+        { id: 2, content: "Based in Toronto, Canada" },
     ];
+
+    const [placeholderText, setPlaceholderText] = useState(() =>
+        aboutContentText.map(({ content }) =>
+            Array.from({ length: content.length }, () => (Math.random() < 0.5 ? "0" : "1")).join("")
+        )
+    );
+
     useEffect(() => {
-        const getNewActive = () => {
-            for(let i = 0; i < content.length; i++){
-                setActive(i)
-            }
-            i = 0
-        }
-    },[])
+        const intervalIDs = aboutContentText.map(({ content }, lineIndex) =>
+            setInterval(() => {
+                setPlaceholderText((prevTexts) => {
+                    const newTexts = [...prevTexts];
+                    const currentLine = newTexts[lineIndex].split("")
+                    const targetLine = content;
+                    const indices = [...Array(targetLine.length).keys()].filter(
+                        (i) => currentLine[i] === "0" || currentLine[i] === "1"
+                    );
+
+                    if (indices.length === 0) {
+                        clearInterval(intervalIDs[lineIndex]);
+                        return prevTexts;
+                    }
+
+                    const randomIndex = indices[Math.floor(Math.random() * indices.length)];
+                    currentLine[randomIndex] = targetLine[randomIndex];
+                    newTexts[lineIndex] = currentLine.join("");
+
+                    return newTexts;
+                });
+            }, 70)
+        );
+
+        return () => intervalIDs.forEach(clearInterval);
+    }, [aboutContentText]);
 
     return (
         <div className="h-fit">
-            {content.map((text, index) => (
-                <span
-                    key={index}
-                    id={text.id}
-                    className="text-body-sm md:text-body-md lg:text-body-lg "
-                >
-                    {text + " "}
-                </span>
+            {placeholderText.map((line, index) => (
+                <p key={index} className="font-mono text-body-sm md:text-body-md lg:text-body-lg">
+                    {line}
+                </p>
             ))}
-
         </div>
     );
 }

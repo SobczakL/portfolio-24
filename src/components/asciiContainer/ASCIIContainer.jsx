@@ -12,7 +12,7 @@ export default function ASCIIContainer() {
 
     return (
         <div
-            className="relative size-full mx-auto md:mx-0 aspect-[4/3]"
+            className="relative size-full aspect-[4/3] lg:w-5/6 lg:h-auto"
             ref={parentRef}
         >
             <canvas
@@ -21,7 +21,7 @@ export default function ASCIIContainer() {
             ></canvas>
             <pre
                 ref={outputRef}
-                className="absolute inset-0 text-[0.3em] leading-[1.2] whitespace-pre overflow-hidden"
+                className="absolute inset-0 left-0 right-0 text-[0.3em] leading-[1.2] whitespace-pre overflow-hidden"
             ></pre>
 
         </div>
