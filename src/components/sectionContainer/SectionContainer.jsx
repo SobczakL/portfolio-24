@@ -1,7 +1,6 @@
-import React, { useContext } from "react";
+import React from "react";
 
 export default React.forwardRef(function SectionContainer({
-    ID,
     title,
     content,
     id,

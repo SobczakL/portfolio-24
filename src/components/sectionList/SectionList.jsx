@@ -10,8 +10,6 @@ export default function SectionList() {
         { title: "Work", content: <ProjectsContent /> },
     ];
 
-
-    //TODO: do I need this? SectionContainer is rerendered each time...
     const { activeSection, setRef } = useIntersectionObserver({
         threshold: [0.3, 0.6, 0.9, 1.0],
         rootMargin: "-50px",
@@ -20,13 +18,12 @@ export default function SectionList() {
 
     return (
         <div
-            className="flex flex-col gap-6 md:gap-8 lg:w-3/6 lg:overflow-y-scroll lg:pt-[15%]"
+            className="flex flex-col gap-6 md:gap-8 lg:w-3/6 lg:overflow-y-scroll pb-6 md:pb-7 lg:pb-8 lg:pt-[15%]"
         >
             {sections.map((section, index) => {
                 return (
                     <SectionContainer
                         key={index}
-                        ID={index}
                         ref={setRef(index)}
                         isActive={activeSection === section.title}
                         id={section.title}

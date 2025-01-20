@@ -2,9 +2,9 @@ import { useState, useEffect } from "react";
 
 export default function AboutContent() {
     const aboutContentText = [
-        { id: 0, content: "Hi, my name is Lucas Sobczak" },
-        { id: 1, content: "I am a self-taught Full Stack Developer" },
-        { id: 2, content: "Based in Toronto, Canada" },
+        { id: 0, content: "Hi, I'm Lucas Sobczak, a self-taught full stack developer." },
+        { id: 1, content: "Passionate about impactful development and mentoring aspiring developers." },
+        { id: 2, content: "TORONTO, CANADA" },
     ];
 
     const [placeholderText, setPlaceholderText] = useState(() =>

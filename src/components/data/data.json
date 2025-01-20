@@ -1,7 +1,7 @@
 [
     {
         "id": 1,
-        "title": "ASCII Art Generator",
+        "title": "ASCII Generator",
         "description": "This tool generates ASCII art from input images, allowing users to create text-based representations of their favorite visuals. It offers a simple interface for uploading images and receiving their ASCII versions.",
         "year": "2024",
         "link": "https://sobczakl.github.io/ASCII-gen/",

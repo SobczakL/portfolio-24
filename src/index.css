@@ -8,11 +8,6 @@
 }
 
 @font-face {
-    font-family: "jetB";
-    src: url("../public/fonts/JetBrainsMonoNL-Regular.ttf")
-}
-
-@font-face {
     font-family: "led";
     src: url("../public/fonts/led_counter-7.ttf")
 }
