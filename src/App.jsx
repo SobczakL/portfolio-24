@@ -1,35 +1,35 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { useState, useEffect } from "react";
+import "./App.css";
+import Header from "./components/header/Header";
+import Footer from "./components/footer/Footer"
+import ASCIIContainer from "./components/asciiContainer/ASCIIContainer";
+import SectionList from "./components/sectionList/SectionList"
 
 function App() {
-  const [count, setCount] = useState(0)
+    const [offsetY, setOffsetY] = useState(0)
 
-  return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+    const handleScroll = () => {
+        setOffsetY(window.scrollY);
+    };
+
+    useEffect(() => {
+        window.addEventListener('scroll', handleScroll);
+        return () => window.removeEventListener('scroll', handleScroll);
+    }, []);
+
+
+    return (
+        <div className="h-fit lg:h-screen bg-main-bg text-white font-pixel">
+            <Header />
+            <div className="mx-auto h-full lg:h-[85%] bg-inherit flex flex-col justify-items-center lg:flex-row gap-6 lg:gap-0 px-4 md:px-6">
+                <div className="flex flex-col mx-auto w-full md:w-5/6 lg:w-3/6 justify-center">
+                    <ASCIIContainer />
+                </div>
+                <SectionList />
+            </div>
+            <Footer />
+        </div>
+    );
 }
 
-export default App
+export default App;
