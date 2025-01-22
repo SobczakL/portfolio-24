@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import "./App.css";
-import Header from "./components/header/Header";
+import Header from "./components/header/Header"
 import Footer from "./components/footer/Footer"
 import ASCIIContainer from "./components/asciiContainer/ASCIIContainer";
 import SectionList from "./components/sectionList/SectionList"
