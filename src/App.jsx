@@ -1,6 +1,5 @@
 import { useState, useEffect } from "react";
 import "./App.css";
-import Header from "./components/header/Header"
 import Footer from "./components/footer/Footer"
 import ASCIIContainer from "./components/asciiContainer/ASCIIContainer";
 import SectionList from "./components/sectionList/SectionList"
@@ -20,7 +19,6 @@ function App() {
 
     return (
         <div className="h-fit lg:h-screen bg-main-bg text-white font-pixel">
-            <Header />
             <div className="mx-auto h-full lg:h-[85%] bg-inherit flex flex-col justify-items-center lg:flex-row gap-6 lg:gap-0 px-4 md:px-6">
                 <div className="flex flex-col mx-auto w-full md:w-5/6 lg:w-3/6 justify-center">
                     <ASCIIContainer />
