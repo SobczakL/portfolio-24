@@ -3,7 +3,7 @@ import "./App.css";
 import Footer from "./components/footer/Footer"
 import ASCIIContainer from "./components/asciiContainer/ASCIIContainer";
 import SectionList from "./components/sectionList/SectionList"
-import Header from "./components/header/Header";
+import Header from "./components/header/Temp";
 
 function App() {
     const [offsetY, setOffsetY] = useState(0)
