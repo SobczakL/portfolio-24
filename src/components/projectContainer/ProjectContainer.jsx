@@ -9,7 +9,7 @@ export default React.forwardRef(function ProjectContainer({
         <div
             ref={ref}
             id={id}
-            className={`${isActive ? "opacity-100" : "opacity-70 scale-95"} relative flex gap-5 w-full pb-5 md:pb-6 lg:pb-8 text-body-sm md:text-body-md lg:text-body-lg h-auto`}>
+            className={`${isActive ? "opacity-100" : "opacity-60 scale-95"} relative flex gap-5 w-full pb-5 md:pb-6 lg:pb-8 text-body-sm md:text-body-md lg:text-body-lg h-auto`}>
             {/* <p>[]&gt;</p> */}
             <div className="flex flex-col gap-5 w-full justify-between">
                 <div className="flex flex-col md:justify-between gap-4">
@@ -34,7 +34,7 @@ export default React.forwardRef(function ProjectContainer({
                         <p>TECH: {project.stack}</p>
                     </div>
                 </div>
-                <p className={`min-w-fit text-projectDetails-sm md:text-projectDetails-md lg:text-projectDetails-lg hover:underline ${isActive ? "block" : "hidden"}`}>
+                <p className={`min-w-fit text-projectDetails-sm md:text-projectDetails-md lg:text-projectDetails-lg hover:underline ${isActive ? "block" : "hidden"} hover:text-accent-green`}>
                     <a href={project.link} alt="project link">
                         LINK -&gt;
                     </a>

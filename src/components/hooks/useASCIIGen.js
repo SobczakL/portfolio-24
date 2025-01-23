@@ -3,13 +3,8 @@ import { useEffect } from "react";
 export function useASCIIGen(mediaURL, mediaType, parentRef, canvasRef, outputRef) {
 
     const generateASCII = (canvas, ctx, output) => {
-        // const density =
-        //     "$@b%8&wm#*oakdpwmo0qlcjyxzvuxjft/|()1{}[]?-_+~<>i!;:,^`'. ";
         const density =
             " .:-=+*o%@";
-
-        // const density =
-        //     "@%#*+=-:. ";
         const width = canvas.width;
         const height = canvas.height;
         const imagedata = ctx.getImageData(0, 0, width, height);

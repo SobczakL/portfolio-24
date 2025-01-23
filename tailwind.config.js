@@ -12,7 +12,7 @@ export default {
                 "main-bg": "#2D2B2B",
                 "hover-bg": "#2D2B2B",
                 "subtext-bg": "#5D5B5B",
-                "accent-green": "#5FF6BF",
+                "accent-green": "#41BE27",
             },
             fontFamily: {
                 custom: ["mainFont", "sans-serif"],

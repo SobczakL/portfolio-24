@@ -35,7 +35,7 @@ export default function AboutContent() {
 
                     return newTexts;
                 });
-            }, 70)
+            }, 90)
         );
 
         return () => intervalIDs.forEach(clearInterval);
@@ -44,7 +44,7 @@ export default function AboutContent() {
     return (
         <div className="h-fit text-pixel">
             {placeholderText.map((line, index) => (
-                <p key={index} className="font-mono text-body-sm md:text-body-md lg:text-body-lg">
+                <p key={index} className="text-body-sm md:text-body-md lg:text-body-lg">
                     {line}
                 </p>
             ))}
