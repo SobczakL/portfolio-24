@@ -3,8 +3,8 @@ import { useState, useEffect } from "react";
 export default function AboutContent() {
     const aboutContentText = [
         { id: 0, content: "/ Self-taught Full Stack Developer" },
-        { id: 1, content: "/ Changing the world, one centered div at a time" },
-        { id: 2, content: "/ Toronto, Canada" },
+        { id: 1, content: "/ Toronto, Canada" },
+        { id: 2, content: "/ Scroll for projects ↓" },
     ];
 
     const [placeholderText, setPlaceholderText] = useState(() =>
@@ -42,7 +42,7 @@ export default function AboutContent() {
     }, [aboutContentText]);
 
     return (
-        <div className="h-fit">
+        <div className="h-fit text-pixel">
             {placeholderText.map((line, index) => (
                 <p key={index} className="font-mono text-body-sm md:text-body-md lg:text-body-lg">
                     {line}
