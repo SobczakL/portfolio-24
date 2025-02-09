@@ -1,6 +1,14 @@
 [
     {
         "id": 1,
+        "title": "Gopher Chat",
+        "description": "This Go-based chat app integrates the OpenAI API for smart responses, enabling real-time communication with a client-server setup and multi-user support. It highlights Go’s concurrency and networking features while enhancing chats with AI-driven insights.",
+        "year": "2025",
+        "link": "https://github.com/SobczakL/gopher-chat",
+        "stack": "HTML, CSS, JavaScript, Golang, Open AI API"
+    },
+    {
+        "id": 2,
         "title": "ASCII Generator",
         "description": "This tool generates ASCII art from input images, allowing users to create text-based representations of their favorite visuals. It offers a simple interface for uploading images and receiving their ASCII versions.",
         "year": "2024",
