@@ -2,7 +2,7 @@
     {
         "id": 1,
         "title": "Gopher Chat",
-        "description": "This Go-based chat app integrates the OpenAI API for smart responses, enabling real-time communication with a client-server setup and multi-user support. It highlights Go’s concurrency and networking features while enhancing chats with AI-driven insights.",
+        "description": "This Go-based chat app integrates the OpenAI API for smart responses, enabling real-time communication with a client-server setup. It highlights Go’s concurrency and networking features while enhancing chats with AI-driven insights.",
         "year": "2025",
         "link": "https://github.com/SobczakL/gopher-chat",
         "stack": "HTML, CSS, JavaScript, Golang, Open AI API"
